@@ -1,4 +1,7 @@
 {
-  "version": "3.2.0",
-  "file_url": "https://raw.githubusercontent.com/demirrsarppkurtlarr/ValAcc/main/main.py"
+  "version": "3.3.0",
+  "file_url": "https://raw.githubusercontent.com/KULLANICI/ValAcc/main/main.py",
+  "sha256": "BURAYA_SHA256_HASH",
+  "force_update": false,
+  "changelog": "Gelişmiş log sistemi ve güvenli update eklendi."
 }
