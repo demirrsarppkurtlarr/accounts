@@ -2,23 +2,24 @@ import os
 import sys
 import time
 import random
-import json
 import requests
 import pyperclip
+import json
 from datetime import datetime
 
-# ==============================
+# =========================================
 # AYARLAR
-# ==============================
+# =========================================
+LOCAL_VERSION = "3.2.0"
 
-LOCAL_VERSION = "3.3.0"
-DATA_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/accounts.json"
-VERSION_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/version.json"
+BASE_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/"
+DATA_URL = BASE_URL + "accounts.json"
+VERSION_URL = BASE_URL + "version.json"
 
 ADMIN_PASSWORD = "demir1003"
 
-LOG_FILE = "system_logs.json"
-CONSENT_FILE = os.path.join(os.path.expanduser("~"), "valacc_consent.json")
+LOG_FILE = "activity_logs.json"
+CONSENT_FILE = "consent.json"
 
 RED = "\033[91m"
 GREEN = "\033[92m"
@@ -26,240 +27,203 @@ YELLOW = "\033[93m"
 CYAN = "\033[96m"
 RESET = "\033[0m"
 
-# ==============================
-# ANİMASYONLAR
-# ==============================
-
+# =========================================
+# YARDIMCI
+# =========================================
 def temizle():
     os.system("cls" if os.name == "nt" else "clear")
 
-def buyuk_logo():
-    logo = """
-██████╗ ██████╗ ███╗   ███╗  ██████╗ 
-██╔══██╗╚════██╗████╗ ████║ ██╔═══██╗
-██║  ██║ █████╔╝██╔████╔██║ ██║   ██║
-██║  ██║ ╚═══██╗██║╚██╔╝██║ ██║   ██║
-██████╔╝██████╔╝██║ ╚═╝ ██║ ╚██████╔╝
-╚═════╝ ╚═════╝ ╚═╝     ╚═╝  ╚═════╝ 
-"""
-    for line in logo.split("\n"):
-        print(CYAN + line + RESET)
-        time.sleep(0.05)
+def yaz(metin, renk=GREEN):
+    print(renk + metin + RESET)
 
-def loader_bar(text="Yukleniyor", length=30):
-    print(YELLOW + text + RESET)
-    for i in range(length + 1):
-        bar = "█" * i + "-" * (length - i)
-        sys.stdout.write(f"\r[{bar}] {int((i/length)*100)}%")
+def loader_bar():
+    print(YELLOW + "\nSistem Baslatiliyor...\n" + RESET)
+    bar_length = 30
+    for i in range(bar_length + 1):
+        percent = int((i / bar_length) * 100)
+        bar = "█" * i + "-" * (bar_length - i)
+        sys.stdout.write(f"\r[{bar}] {percent}%")
         sys.stdout.flush()
-        time.sleep(0.08)
+        time.sleep(0.05)
     print("\n")
 
-# ==============================
-# LOG SİSTEMİ
-# ==============================
+def ascii_logo():
+    print(CYAN + r"""
+██████╗ ██████╗ ███╗   ███╗ ██████╗ 
+██╔══██╗██╔══██╗████╗ ████║██╔═══██╗
+██║  ██║██████╔╝██╔████╔██║██║   ██║
+██║  ██║██╔═══╝ ██║╚██╔╝██║██║   ██║
+██████╔╝██║     ██║ ╚═╝ ██║╚██████╔╝
+╚═════╝ ╚═╝     ╚═╝     ╚═╝ ╚═════╝ 
+            D3m0 Secure System
+""" + RESET)
 
-def log_event(event_type, key_used="none", extra=""):
-    log_data = []
-
-    if os.path.exists(LOG_FILE):
-        try:
-            with open(LOG_FILE, "r", encoding="utf-8") as f:
-                log_data = json.load(f)
-        except:
-            log_data = []
-
+# =========================================
+# LOG SISTEMI
+# =========================================
+def log_ekle(event, key_used=None, extra=None):
     log_entry = {
         "timestamp": str(datetime.now()),
-        "event": event_type,
+        "event": event,
         "key": key_used,
-        "version": LOCAL_VERSION,
         "extra": extra
     }
 
-    log_data.append(log_entry)
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE, "r", encoding="utf-8") as f:
+            logs = json.load(f)
+    else:
+        logs = []
+
+    logs.append(log_entry)
 
     with open(LOG_FILE, "w", encoding="utf-8") as f:
-        json.dump(log_data, f, indent=4)
+        json.dump(logs, f, indent=4)
 
-# ==============================
-# CONSENT
-# ==============================
-
+# =========================================
+# ONAY SISTEMI
+# =========================================
 def onay_al():
-    if os.path.exists(CONSENT_FILE):
-        return True
+    while True:
+        print("\nVerileriniz loglanabilir. Devam etmek istiyor musunuz? (E/H)")
+        secim = input("Secim: ").lower()
 
-    print(CYAN + "\nBu yazilim anonim kullanim loglari toplar." + RESET)
-    sec = input("Devam etmek icin onayliyor musunuz? (E/H): ").lower()
+        if secim == "e":
+            with open(CONSENT_FILE, "w", encoding="utf-8") as f:
+                json.dump({"consent": True}, f)
+            return True
+        elif secim == "h":
+            print("Onay verilmedi. Program kapatiliyor...")
+            time.sleep(2)
+            sys.exit()
 
-    if sec == "e":
-        with open(CONSENT_FILE, "w", encoding="utf-8") as f:
-            json.dump({"consent": True}, f)
-        return True
-    else:
-        print(RED + "Onay verilmedi. Program kapatiliyor." + RESET)
-        time.sleep(2)
-        sys.exit()
-
-# ==============================
-# AUTO UPDATE
-# ==============================
-
-def update_program(file_url):
+# =========================================
+# VERSION CHECK
+# =========================================
+def version_check(local, server):
     try:
-        print("Yeni sürüm indiriliyor...")
-        r = requests.get(file_url, timeout=10)
-        r.raise_for_status()
-
-        current_file = sys.argv[0]
-        backup_file = current_file + ".backup"
-
-        with open(current_file, "r", encoding="utf-8") as f:
-            old_code = f.read()
-
-        with open(backup_file, "w", encoding="utf-8") as f:
-            f.write(old_code)
-
-        with open(current_file, "w", encoding="utf-8") as f:
-            f.write(r.text)
-
-        print("Güncelleme tamamlandı. Yeniden başlatılıyor...")
-        time.sleep(2)
-
-        os.execv(sys.executable, ['python'] + sys.argv)
-
-    except Exception as e:
-        print("Update başarısız:", e)
-
-def check_for_update():
-    try:
-        r = requests.get(VERSION_URL, timeout=5)
-        data = r.json()
-
-        online_version = data.get("version")
-        file_url = data.get("file_url")
-
-        if online_version != LOCAL_VERSION:
-            print(YELLOW + f"Yeni sürüm bulundu: {online_version}" + RESET)
-            sec = input("Güncellemek ister misiniz? (E/H): ").lower()
-            if sec == "e":
-                update_program(file_url)
+        lv = tuple(map(int, local.split(".")))
+        sv = tuple(map(int, server.split(".")))
+        if lv < sv:
+            yaz(f"Yeni versiyon mevcut: {server}", YELLOW)
     except:
         pass
 
-# ==============================
-# BAŞLANGIÇ
-# ==============================
-
-temizle()
-buyuk_logo()
-loader_bar("Sistem Baslatiliyor")
-
-onay_al()
-log_event("program_start")
-
-check_for_update()
-
-# ==============================
-# DATA ÇEKME
-# ==============================
-
+# =========================================
+# BASLANGIC
+# =========================================
 try:
-    loader_bar("Sunucuya Baglaniliyor")
-    response = requests.get(DATA_URL, timeout=5)
+    temizle()
+    ascii_logo()
+    loader_bar()
+
+    onay_al()
+
+    # Version çek
+    version_response = requests.get(VERSION_URL, timeout=10)
+    version_data = version_response.json()
+    server_version = version_data.get("version", LOCAL_VERSION)
+
+    # Accounts çek
+    response = requests.get(DATA_URL, timeout=10)
     data = response.json()
-except:
-    print(RED + "Veri cekilemedi!" + RESET)
-    log_event("data_fetch_failed")
-    input("Enter...")
+
+except Exception as e:
+    yaz("KRITIK HATA!", RED)
+    print("Detay:", e)
+    input("Enter bas...")
     sys.exit()
+
+version_check(LOCAL_VERSION, server_version)
 
 keys = data.get("keys", {})
 accounts = data.get("accounts", {})
 
-# ==============================
-# KEY KONTROL
-# ==============================
-
-def key_kontrol():
-    while True:
-        key_input = input("Erisim Key: ").strip().lower()
-
-        key_match = [k for k in keys if k.lower() == key_input]
-        if not key_match:
-            print(RED + "Gecersiz key!" + RESET)
-            log_event("invalid_key", key_input)
-            continue
-
-        key_info = keys[key_match[0]]
-
-        key_info["used_attempt"] += 1
-        log_event("key_approved", key_match[0])
-
-        return key_info["tier"], key_match[0]
-
-# ==============================
+# =========================================
 # ADMIN PANEL
-# ==============================
-
+# =========================================
 def admin_panel():
     while True:
         temizle()
-        print(CYAN + "=== ADMIN PANEL ===" + RESET)
-        print("1 - Loglari gor")
-        print("2 - Loglari temizle")
-        print("3 - Cikis")
+        yaz("=== ADMIN PANEL ===", CYAN)
+        print("1 - Tum keyler")
+        print("2 - Loglari gor")
+        print("3 - Versiyon bilgisi")
+        print("4 - Cikis")
 
-        sec = input("Secim: ")
+        secim = input("Secim: ")
 
-        if sec == "1":
+        if secim == "1":
+            for k, v in keys.items():
+                print(f"{k} | Tier: {v['tier']}")
+            input("Enter...")
+
+        elif secim == "2":
             if os.path.exists(LOG_FILE):
                 with open(LOG_FILE, "r", encoding="utf-8") as f:
                     logs = json.load(f)
-                    for l in logs:
-                        print(l)
+                for log in logs:
+                    print(log)
+            else:
+                print("Log yok.")
             input("Enter...")
 
-        elif sec == "2":
-            with open(LOG_FILE, "w") as f:
-                json.dump([], f)
-            print("Loglar temizlendi.")
+        elif secim == "3":
+            print("Local:", LOCAL_VERSION)
+            print("Server:", server_version)
             input("Enter...")
 
-        elif sec == "3":
+        elif secim == "4":
             break
 
-# ==============================
-# ADMIN GİRİŞ
-# ==============================
+# =========================================
+# KEY KONTROL
+# =========================================
+def key_kontrol():
+    while True:
+        key_input = input("Erisim Key: ").strip().lower()
+        key_match = [k for k in keys if k.lower() == key_input]
 
+        if not key_match:
+            yaz("Gecersiz key!", RED)
+            log_ekle("invalid_key", key_input)
+            continue
+
+        key_info = keys[key_match[0]]
+        log_ekle("key_login", key_match[0])
+
+        return key_info["tier"], key_match[0]
+
+# =========================================
+# ADMIN GIRIS
+# =========================================
 admin_input = input("Admin sifre (bos gec): ")
 if admin_input == ADMIN_PASSWORD:
-    log_event("admin_login")
     admin_panel()
     sys.exit()
 
 tier, used_key = key_kontrol()
 
-kalan_hesaplar = accounts.get(tier, []).copy()
+if tier not in accounts:
+    yaz("Bu tier icin hesap yok.", RED)
+    sys.exit()
 
-# ==============================
+kalan_hesaplar = accounts[tier].copy()
+
+# =========================================
 # ANA MENU
-# ==============================
-
+# =========================================
 while True:
     temizle()
-    print(GREEN + "1 - Rastgele Hesap Al" + RESET)
-    print("2 - Kalan Hesap")
-    print(RED + "3 - Cikis" + RESET)
+    yaz("1 - Rastgele Hesap Al", GREEN)
+    yaz("2 - Kalan Hesap")
+    yaz("3 - Cikis", RED)
 
     secim = input("Secim: ")
 
     if secim == "1":
         if not kalan_hesaplar:
-            print(RED + "Hesap kalmadi." + RESET)
-            log_event("no_accounts", used_key)
+            yaz("Hesap kalmadi.", RED)
             time.sleep(1)
             continue
 
@@ -267,17 +231,15 @@ while True:
         kalan_hesaplar.remove(secilen)
 
         pyperclip.copy(secilen)
-        print(GREEN + "Hesap panoya kopyalandi!" + RESET)
+        yaz("Hesap panoya kopyalandi!", GREEN)
 
-        log_event("account_taken", used_key, secilen)
-
-        time.sleep(1)
+        log_ekle("account_given", used_key, secilen)
+        time.sleep(2)
 
     elif secim == "2":
-        print(f"Kalan hesap: {len(kalan_hesaplar)}")
-        log_event("check_remaining", used_key)
+        yaz(f"Kalan hesap: {len(kalan_hesaplar)}")
         input("Enter...")
 
     elif secim == "3":
-        log_event("program_exit", used_key)
+        log_ekle("program_exit", used_key)
         break
