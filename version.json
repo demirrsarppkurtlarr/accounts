@@ -1,7 +1,7 @@
 {
   "version": "3.3.0",
   "file_url": "https://raw.githubusercontent.com/KULLANICI/ValAcc/main/main.py",
-  "sha256": "BURAYA_SHA256_HASH",
-  "force_update": false,
+  "sha256": "2e2a698b0df74a9faddb5a7486f80e011f7bd53435f5c6fe40ce952c3d98d28c",
+  "force_update": true,
   "changelog": "Gelişmiş log sistemi ve güvenli update eklendi."
 }
