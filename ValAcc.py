@@ -11,7 +11,7 @@ from datetime import datetime
 # AYARLAR
 # =====================================================
 
-LOCAL_VERSION = "3.2.0"
+LOCAL_VERSION = "3.4.0"
 
 VERSION_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/version.json"
 DATA_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/accounts.json"
