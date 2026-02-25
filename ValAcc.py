@@ -13,7 +13,7 @@ from datetime import datetime
 # =====================================================
 LOCAL_VERSION = "3.3.0"
 
-BASE_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/valacc-release/main/"
+BASE_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/"
 VERSION_URL = BASE_URL + "version.json"
 ACCOUNTS_URL = BASE_URL + "accounts.json"
 
