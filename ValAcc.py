@@ -12,8 +12,8 @@ from datetime import datetime
 # ==============================
 
 LOCAL_VERSION = "3.2.0"
-DATA_URL = "https://raw.githubusercontent.com/KULLANICI/ValAcc/main/accounts.json"
-VERSION_URL = "https://raw.githubusercontent.com/KULLANICI/ValAcc/main/version.json"
+DATA_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/accounts.json"
+VERSION_URL = "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/version.json"
 
 ADMIN_PASSWORD = "demir1003"
 
