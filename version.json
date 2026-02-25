@@ -1,6 +1,6 @@
 {
   "version": "3.3.0",
-  "file_url": "https://raw.githubusercontent.com/KULLANICI/ValAcc/main/ValAcc.py",
+  "file_url": "https://raw.githubusercontent.com/demirrsarppkurtlarr/accounts/main/ValAcc.py",
   "sha256": "2e2a698b0df74a9faddb5a7486f80e011f7bd53435f5c6fe40ce952c3d98d28c",
   "force_update": true,
   "changelog": "Gelişmiş log sistemi ve güvenli update eklendi."
