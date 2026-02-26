@@ -5,24 +5,28 @@
             "expires": "9999-12-31",
             "max_attempt": 10,
             "used_attempt": 1,
-            "active": true,
-            "hwid": null
+            "active": true
         },
         "premium": {
             "tier": "premium",
             "expires": "2027-01-01",
             "max_attempt": 50,
             "used_attempt": 0,
-            "active": true,
-            "hwid": null
+            "active": true
         },
-        "VP0AGLM0292433NQ": {
+        "CUST-0786-661E-D713-AFBC-FE7C": {
             "tier": "custom",
             "expires": "2026-02-27",
             "max_attempt": 1,
             "used_attempt": 0,
             "active": true,
             "hwid": null
+        },
+        "UJN95KEU0PYQG5JL": {
+            "active": true,
+            "expires": "2026-03-01",
+            "used_attempt": 0,
+            "max_attempt": 5
         }
     },
     "accounts": [
