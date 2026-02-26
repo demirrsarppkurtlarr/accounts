@@ -5,28 +5,24 @@
             "expires": "9999-12-31",
             "max_attempt": 10,
             "used_attempt": 1,
-            "active": true
+            "active": true,
+            "hwid": null
         },
         "premium": {
             "tier": "premium",
             "expires": "2027-01-01",
             "max_attempt": 50,
             "used_attempt": 0,
-            "active": true
+            "active": true,
+            "hwid": null
         },
-        "CUST-0786-661E-D713-AFBC-FE7C": {
+        "VP0AGLM0292433NQ": {
             "tier": "custom",
             "expires": "2026-02-27",
             "max_attempt": 1,
             "used_attempt": 0,
             "active": true,
             "hwid": null
-        },
-        "VP0AGLM0292433NQ": {
-            "active": true,
-            "expires": "2026-02-27",
-            "used_attempt": 0,
-            "max_attempt": 1
         }
     },
     "accounts": [
