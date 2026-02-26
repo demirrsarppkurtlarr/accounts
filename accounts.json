@@ -13,6 +13,14 @@
             "max_attempt": 50,
             "used_attempt": 0,
             "active": true
+        },
+        "CUST-0786-661E-D713-AFBC-FE7C": {
+            "tier": "custom",
+            "expires": "2026-02-27",
+            "max_attempt": 1,
+            "used_attempt": 0,
+            "active": true,
+            "hwid": null
         }
     },
     "accounts": [
