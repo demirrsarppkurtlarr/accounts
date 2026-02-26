@@ -4,7 +4,7 @@
             "tier": "free",
             "expires": "9999-12-31",
             "max_attempt": 10,
-            "used_attempt": 0,
+            "used_attempt": 1,
             "active": true
         },
         "premium": {
@@ -1903,7 +1903,6 @@
         "mohab944alt:mohab2008",
         "raffytisoy12:raffygwapo12",
         "julianorqueiroz:firewild10",
-        "vaelson1:Rodrigo123",
         "pigpenis5:200534308Kk",
         "plsyin:323436aa.",
         "BenzeneACE:achmadjodan2",
