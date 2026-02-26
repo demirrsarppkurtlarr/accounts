@@ -21,6 +21,12 @@
             "used_attempt": 0,
             "active": true,
             "hwid": null
+        },
+        "VP0AGLM0292433NQ": {
+            "active": true,
+            "expires": "2026-02-27",
+            "used_attempt": 0,
+            "max_attempt": 1
         }
     },
     "accounts": [
