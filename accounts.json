@@ -13,14 +13,6 @@
             "max_attempt": 50,
             "used_attempt": 0,
             "active": true
-        },
-        "CUST-A74C-BA36-C5C1-19C8-C7CA": {
-            "tier": "custom",
-            "expires": "2026-02-27",
-            "max_attempt": 1,
-            "used_attempt": 0,
-            "active": true,
-            "hwid": null
         }
     },
     "accounts": [
