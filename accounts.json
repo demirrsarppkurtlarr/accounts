@@ -4,7 +4,7 @@
             "tier": "free",
             "expires": "9999-12-31",
             "max_attempt": 10,
-            "used_attempt": 3,
+            "used_attempt": 4,
             "active": true
         },
         "premium": {
