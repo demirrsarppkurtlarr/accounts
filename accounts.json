@@ -33,6 +33,12 @@
             "expires": "2026-02-28",
             "used_attempt": 0,
             "max_attempt": 5
+        },
+        "YOU932753ZWV42JH": {
+            "active": true,
+            "expires": "2026-02-28",
+            "used_attempt": 0,
+            "max_attempt": 1
         }
     },
     "accounts": [
