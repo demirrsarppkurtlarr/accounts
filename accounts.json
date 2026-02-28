@@ -4,71 +4,20 @@
             "tier": "free",
             "expires": "9999-12-31",
             "max_attempt": 99999999,
-            "used_attempt": 4,
+            "used_attempt": 5,
             "active": true,
-            "last_used": "2026-02-28T19:04:47.616256",
-            "notes": "Ucretsiz Kullanim",
-        },
-        "BRONZE-Q4M8-Z1P3": {
-            "active": true,
-            "expires": "2026-12-31",
-            "used_attempt": 0,
-            "max_attempt": 5,
-            "tier": "bronze",
-            "hwid_lock": null,
-            "created_at": "2026-02-28T00:00:00",
-            "notes": "Bronze üyelik"
-        },
-        "SILVER-R7T2-X9C6": {
-            "active": true,
-            "expires": "2026-12-31",
-            "used_attempt": 0,
-            "max_attempt": 10,
-            "tier": "silver",
-            "hwid_lock": null,
-            "created_at": "2026-02-28T00:00:00",
-            "notes": "Silver üyelik"
-        },
-        "GOLD-V3N8-L5K1": {
-            "active": true,
-            "expires": "2026-12-31",
-            "used_attempt": 0,
-            "max_attempt": 30,
-            "tier": "gold",
-            "hwid_lock": null,
-            "created_at": "2026-02-28T00:00:00",
-            "notes": "Gold üyelik"
-        },
-        "DIAMOND-H8J4-W2Q9": {
-            "active": true,
-            "expires": "2027-12-31",
-            "used_attempt": 0,
-            "max_attempt": 50,
-            "tier": "diamond",
-            "hwid_lock": null,
-            "created_at": "2026-02-28T00:00:00",
-            "notes": "Diamond üyelik"
-        },
-        "PREMIUM-Z6C1-B9N4": {
-            "active": true,
-            "expires": "2027-01-01",
-            "used_attempt": 0,
-            "max_attempt": 100,
-            "tier": "premium",
-            "hwid_lock": null,
-            "created_at": "2026-02-28T00:00:00",
-            "notes": "Premium üyelik"
+            "last_used": "2026-02-28T22:39:06.159037"
         },
         "JLGJ-7C51-1HI3-BMQW": {
             "active": true,
             "expires": "2026-03-03",
-            "used_attempt": 2,
-            "max_attempt": 9999999,
+            "used_attempt": 1,
+            "max_attempt": 5,
             "tier": "owner",
             "hwid_lock": "2ccbb6e16f80abb3444d735096d837c027eb52280c3f6b3f53af01659ec8d2d7",
             "created_at": "2026-02-28T20:07:51.444071",
             "notes": "owner",
-            "last_used": "2026-02-28T21:30:50.084784"
+            "last_used": "2026-02-28T20:08:37.716861"
         }
     },
     "accounts": {
