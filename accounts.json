@@ -4,9 +4,9 @@
             "tier": "free",
             "expires": "9999-12-31",
             "max_attempt": 99999999,
-            "used_attempt": 5,
+            "used_attempt": 6,
             "active": true,
-            "last_used": "2026-02-28T22:39:06.159037"
+            "last_used": "2026-03-01T00:54:31.876128"
         },
         "JLGJ-7C51-1HI3-BMQW": {
             "active": true,
