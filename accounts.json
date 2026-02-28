@@ -44,12 +44,13 @@
         "JLGJ-7C51-1HI3-BMQW": {
             "active": true,
             "expires": "2026-03-03",
-            "used_attempt": 0,
+            "used_attempt": 1,
             "max_attempt": 5,
             "tier": "owner",
-            "hwid_lock": null,
+            "hwid_lock": "2ccbb6e16f80abb3444d735096d837c027eb52280c3f6b3f53af01659ec8d2d7",
             "created_at": "2026-02-28T20:07:51.444071",
-            "notes": "owner"
+            "notes": "owner",
+            "last_used": "2026-02-28T20:08:37.716861"
         }
     },
     "accounts": {
