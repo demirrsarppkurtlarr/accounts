@@ -8,39 +8,27 @@
             "active": true,
             "last_used": "2026-02-28T19:04:47.616256"
         },
-        "premium": {
-            "tier": "premium",
-            "expires": "2027-01-01",
-            "max_attempt": 50,
-            "used_attempt": 0,
-            "active": true
-        },
-        "CUST-0786-661E-D713-AFBC-FE7C": {
-            "tier": "custom",
-            "expires": "2026-02-27",
-            "max_attempt": 1,
-            "used_attempt": 0,
-            "active": true,
-            "hwid": null
-        },
-        "UJN95KEU0PYQG5JL": {
-            "active": true,
-            "expires": "2026-03-01",
-            "used_attempt": 0,
-            "max_attempt": 5
-        },
-        "A2TPAGMZ6EKYIDOK": {
-            "active": true,
-            "expires": "2026-02-28",
-            "used_attempt": 0,
-            "max_attempt": 5
-        },
-        "YOU932753ZWV42JH": {
-            "active": true,
-            "expires": "2026-02-28",
-            "used_attempt": 0,
-            "max_attempt": 1
-        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         "JLGJ-7C51-1HI3-BMQW": {
             "active": true,
             "expires": "2026-03-03",
@@ -54,7 +42,7 @@
         }
     },
     "accounts": {
-        "other": [
+        "valorant": [
             "amirking1608:Amirjoker15",
             "happywitsmileface:keith8173",
             "jpyo336:kimsem9364!!",
@@ -14814,6 +14802,16 @@
             "danoses770:SashaGrey78",
             "Nokls7:DALibOr7",
             "zxchunt3rzxc:killerzomer1"
-        ]
+        ],
+        "netflix": [],
+        "spotify": [],
+        "steam": [],
+        "minecraft": [],
+        "crunchyroll": [],
+        "hulu": [],
+        "disney+": [],
+        "xbox": [],
+        "epic_games": [],
+        "other": []
     }
 }
